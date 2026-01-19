@@ -32,9 +32,7 @@ const envSchema = z.object({
   JWT_REFRESH_EXPIRES_IN: z.string().default('7d'),
 
   // CORS
-  CORS_ORIGIN: z.string().url({
-    message: 'CORS_ORIGIN must be a valid URL',
-  }),
+  CORS_ORIGIN: z.string().min(1),
 });
 
 // Validate environment variables
