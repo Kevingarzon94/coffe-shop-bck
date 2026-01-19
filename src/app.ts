@@ -2,45 +2,14 @@ import express, { Application, Request, Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
-import rateLimit from 'express-rate-limit';
 import { env } from './config/env';
 import {
   errorMiddleware,
   notFoundMiddleware,
 } from './shared/middleware/error.middleware';
+import { generalLimiter } from './shared/middleware/rate-limit.middleware';
 import { successResponse } from './shared/utils/response';
 import authRoutes from './modules/auth/auth.routes';
-
-// ==================== Rate Limiters ====================
-// General rate limiter: 100 requests per 15 minutes
-const generalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Max 100 requests per windowMs
-  message: {
-    success: false,
-    error: {
-      code: 'RATE_LIMIT_EXCEEDED',
-      message: 'Too many requests, please try again later.',
-    },
-  },
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-});
-
-// Auth rate limiter: 5 requests per 15 minutes (can be used in auth routes)
-export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Max 5 requests per windowMs
-  message: {
-    success: false,
-    error: {
-      code: 'AUTH_RATE_LIMIT_EXCEEDED',
-      message: 'Too many authentication attempts, please try again later.',
-    },
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-});
 
 /**
  * Create and configure Express application

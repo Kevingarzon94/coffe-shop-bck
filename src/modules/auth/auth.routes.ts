@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { validate } from '../../shared/middleware/validate.middleware';
-import { authLimiter } from '../../app';
+import { authLimiter } from '../../shared/middleware/rate-limit.middleware';
 import { authenticate } from './auth.middleware';
 import * as authController from './auth.controller';
 import {
