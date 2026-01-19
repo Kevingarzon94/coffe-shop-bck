@@ -10,6 +10,7 @@ import {
 import { generalLimiter } from './shared/middleware/rate-limit.middleware';
 import { successResponse } from './shared/utils/response';
 import authRoutes from './modules/auth/auth.routes';
+import productsRoutes from './modules/products/products.routes';
 
 /**
  * Create and configure Express application
@@ -69,6 +70,7 @@ export function createApp(): Application {
           health: '/health',
           api: '/api',
           auth: '/api/auth',
+          products: '/api/products',
         },
       })
     );
@@ -76,9 +78,9 @@ export function createApp(): Application {
 
   // ==================== Module Routes ====================
   app.use('/api/auth', authRoutes);
+  app.use('/api/products', productsRoutes);
 
   // TODO: Add remaining module routes
-  // app.use('/api/products', productRoutes);
   // app.use('/api/sales', salesRoutes);
   // app.use('/api/customers', customerRoutes);
   // app.use('/api/dashboard', dashboardRoutes);
