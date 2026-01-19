@@ -6,7 +6,7 @@ import { z } from 'zod';
 export const saleItemSchema = z.object({
   productId: z.string().uuid('Invalid product ID'),
   quantity: z
-    .number()
+    .coerce.number()
     .int('Quantity must be an integer')
     .positive('Quantity must be positive')
     .max(100, 'Quantity cannot exceed 100 per item'),

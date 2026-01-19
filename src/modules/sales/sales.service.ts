@@ -10,7 +10,6 @@ interface Sale {
   customer_id: string;
   total: number;
   created_at: string;
-  updated_at: string;
 }
 
 /**
@@ -51,7 +50,6 @@ interface FormattedSale {
   total: number;
   itemsCount: number;
   createdAt: string;
-  updatedAt: string;
 }
 
 /**
@@ -75,7 +73,6 @@ interface FormattedSaleWithItems {
     subtotal: number;
   }>;
   createdAt: string;
-  updatedAt: string;
 }
 
 /**
@@ -139,7 +136,6 @@ export async function getSales(
       customer_id,
       total,
       created_at,
-      updated_at,
       customers!inner(
         first_name,
         last_name,
@@ -188,7 +184,6 @@ export async function getSales(
     total: parseFloat(sale.total),
     itemsCount: sale.sale_items[0]?.count || 0,
     createdAt: sale.created_at,
-    updatedAt: sale.updated_at,
   }));
 
   return {
@@ -212,7 +207,6 @@ export async function getSaleById(
       customer_id,
       total,
       created_at,
-      updated_at,
       customers!inner(
         first_name,
         last_name,
@@ -269,6 +263,5 @@ export async function getSaleById(
       subtotal: parseFloat(item.subtotal),
     })),
     createdAt: sale.created_at,
-    updatedAt: sale.updated_at,
   };
 }

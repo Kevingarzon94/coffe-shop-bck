@@ -1,4 +1,5 @@
 import rateLimit from 'express-rate-limit';
+import { env } from '../../config/env';
 
 /**
  * General rate limiter: 100 requests per 15 minutes
@@ -18,12 +19,12 @@ export const generalLimiter = rateLimit({
 });
 
 /**
- * Auth rate limiter: 5 requests per 15 minutes
+ * Auth rate limiter: 5 requests per 15 minutes (or 100 in development)
  * Use this for sensitive authentication endpoints
  */
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Max 5 requests per windowMs
+  max: env.NODE_ENV === 'development' ? 100 : 5, // Higher limit for dev
   message: {
     success: false,
     error: {

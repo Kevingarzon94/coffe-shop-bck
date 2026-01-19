@@ -52,6 +52,9 @@ export function validate(
           details
         );
 
+        console.error('Validation Error Details:', JSON.stringify(details, null, 2));
+        console.error('Request Body:', JSON.stringify(req.body, null, 2));
+
         next(validationError);
       } else {
         next(error);
