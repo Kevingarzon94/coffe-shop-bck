@@ -72,6 +72,16 @@ Creates the atomic transaction function for processing sales:
 - Comprehensive error handling
 - Returns detailed result with sale_id, customer_id, and total
 
+### 8. Create dashboard views
+**File:** `008_create_dashboard_views.sql`
+
+Creates analytical views for dashboard metrics:
+- v_revenue_summary: Total sales, revenue, and average sale amount
+- v_top_products: Products ranked by revenue with sales statistics
+- v_top_customers: Customers ranked by spending with purchase history
+- v_low_stock_products: Active products with stock below 5 units
+- Grants SELECT permissions to service_role for all views
+
 ## How to Execute
 
 1. Open your Supabase project dashboard
