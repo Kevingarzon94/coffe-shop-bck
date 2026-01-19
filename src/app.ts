@@ -13,6 +13,7 @@ import authRoutes from './modules/auth/auth.routes';
 import productsRoutes from './modules/products/products.routes';
 import salesRoutes from './modules/sales/sales.routes';
 import customersRoutes from './modules/customers/customers.routes';
+import dashboardRoutes from './modules/dashboard/dashboard.routes';
 
 /**
  * Create and configure Express application
@@ -75,6 +76,7 @@ export function createApp(): Application {
           products: '/api/products',
           sales: '/api/sales',
           customers: '/api/customers',
+          dashboard: '/api/dashboard',
         },
       })
     );
@@ -85,9 +87,7 @@ export function createApp(): Application {
   app.use('/api/products', productsRoutes);
   app.use('/api/sales', salesRoutes);
   app.use('/api/customers', customersRoutes);
-
-  // TODO: Add remaining module routes
-  // app.use('/api/dashboard', dashboardRoutes);
+  app.use('/api/dashboard', dashboardRoutes);
 
   // ==================== Error Handling ====================
   // Handle 404 - Route not found
