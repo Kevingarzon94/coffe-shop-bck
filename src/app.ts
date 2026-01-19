@@ -9,6 +9,7 @@ import {
   notFoundMiddleware,
 } from './shared/middleware/error.middleware';
 import { successResponse } from './shared/utils/response';
+import authRoutes from './modules/auth/auth.routes';
 
 // ==================== Rate Limiters ====================
 // General rate limiter: 100 requests per 15 minutes
@@ -98,14 +99,16 @@ export function createApp(): Application {
         endpoints: {
           health: '/health',
           api: '/api',
-          // Module routes will be added here
+          auth: '/api/auth',
         },
       })
     );
   });
 
-  // TODO: Add module routes here
-  // app.use('/api/auth', authRoutes);
+  // ==================== Module Routes ====================
+  app.use('/api/auth', authRoutes);
+
+  // TODO: Add remaining module routes
   // app.use('/api/products', productRoutes);
   // app.use('/api/sales', salesRoutes);
   // app.use('/api/customers', customerRoutes);
