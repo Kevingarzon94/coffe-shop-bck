@@ -14,11 +14,11 @@ export const createProductSchema = z.object({
     .max(500, 'Description must not exceed 500 characters')
     .optional(),
   price: z
-    .number()
+    .coerce.number()
     .positive('Price must be positive')
     .max(1000000, 'Price must not exceed 1,000,000'),
   stock: z
-    .number()
+    .coerce.number()
     .int('Stock must be an integer')
     .min(0, 'Stock cannot be negative')
     .max(10000, 'Stock must not exceed 10,000'),
