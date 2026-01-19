@@ -246,7 +246,7 @@ export async function getSaleById(
     .order('created_at', { ascending: true });
 
   if (itemsError) {
-    console.error('Error fetching sale items:', error);
+    console.error('Error fetching sale items:', itemsError);
     throw AppError.internal('Failed to fetch sale items');
   }
 
@@ -255,9 +255,9 @@ export async function getSaleById(
     id: sale.id,
     customer: {
       id: sale.customer_id,
-      firstName: sale.customers.first_name,
-      lastName: sale.customers.last_name,
-      email: sale.customers.email,
+      firstName: (sale.customers as any).first_name,
+      lastName: (sale.customers as any).last_name,
+      email: (sale.customers as any).email,
     },
     total: parseFloat(sale.total),
     items: (items || []).map((item: any) => ({

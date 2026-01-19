@@ -224,7 +224,7 @@ export async function getProfile(userId: string): Promise<SafeUser> {
  */
 function generateAccessToken(payload: AuthPayload): string {
   return jwt.sign(payload, env.JWT_SECRET, {
-    expiresIn: env.JWT_EXPIRES_IN,
+    expiresIn: env.JWT_EXPIRES_IN as any,
   });
 }
 
@@ -233,7 +233,7 @@ function generateAccessToken(payload: AuthPayload): string {
  */
 function generateRefreshToken(payload: AuthPayload): string {
   return jwt.sign(payload, env.JWT_REFRESH_SECRET, {
-    expiresIn: env.JWT_REFRESH_EXPIRES_IN,
+    expiresIn: env.JWT_REFRESH_EXPIRES_IN as any,
   });
 }
 
