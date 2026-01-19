@@ -12,6 +12,7 @@ import { successResponse } from './shared/utils/response';
 import authRoutes from './modules/auth/auth.routes';
 import productsRoutes from './modules/products/products.routes';
 import salesRoutes from './modules/sales/sales.routes';
+import customersRoutes from './modules/customers/customers.routes';
 
 /**
  * Create and configure Express application
@@ -73,6 +74,7 @@ export function createApp(): Application {
           auth: '/api/auth',
           products: '/api/products',
           sales: '/api/sales',
+          customers: '/api/customers',
         },
       })
     );
@@ -82,9 +84,9 @@ export function createApp(): Application {
   app.use('/api/auth', authRoutes);
   app.use('/api/products', productsRoutes);
   app.use('/api/sales', salesRoutes);
+  app.use('/api/customers', customersRoutes);
 
   // TODO: Add remaining module routes
-  // app.use('/api/customers', customerRoutes);
   // app.use('/api/dashboard', dashboardRoutes);
 
   // ==================== Error Handling ====================
